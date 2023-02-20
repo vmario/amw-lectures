@@ -101,6 +101,9 @@
 				<img src="media/Quartz_crystal_internal.jpg" class="r-stretch">
 			</section>
 			<section>
+				<img src="media/ocxo.gif" class="r-stretch">
+			</section>
+			<section>
 				<h3>Wzorzec rubidowy</h3>
 				<ul>
 					<li class="fragment">nieludzko dokładny
@@ -112,14 +115,17 @@
 				<img src="media/Rubidium.jpg" class="r-stretch">
 			</section>
 			<section>
-				<h3>Odbiornik GPS</h3>
+				<h3>Odbiornik GPS — <em>1PPS</em></h3>
 				<ul>
 					<li class="fragment">bardzo dokładny
-					<li class="fragment">drogi
-					<li class="fragment">zużywa dużo energii
+					<li class="fragment">stosunkowo tani
+					<li class="fragment">ma średnie zapotrzebowanie na energię
 					<li class="fragment">dostarcza również czas rzeczywisty
 					<li class="fragment">wymaga sygnału z satelity
 				</ul>
+			</section>
+			<section>
+				<img src="media/gps.jpg" class="r-stretch">
 			</section>
 			<section>
 				<h3>Przykładowe dokładności wzorców czasu</h3>
@@ -140,31 +146,91 @@
 				<h3>Szybki zegar \(\Rightarrow\) problem</h3>
 				<ul>
 					<li class="fragment">duże zużycie energii
+					<li class="fragment">wydzielanie ciepła
 					<li class="fragment">generowanie zakłóceń
 					<li class="fragment">zjawiska falowe
 					<li class="fragment">czas propagacji
 				</ul>
 			</section>
 			<section>
-				<h3>Dzielnik częstotliwości</h3>
+				<h3>Dzielnik częstotliwości — <em>divider</em></h3>
+				<ul>
+					<li class="fragment">najprościej podzielić częstotliwość przez \(2^n\)
+					<li class="fragment">możliwe jest uzyskanie podziału także przez \(n\)
+					<li class="fragment">nie ma możliwości zwiększenia częstotliwości
+					<li class="fragment">wymaga zewnętrznego źródła zegara
+				</ul>
+			</section>
+			<section>
+				<img src="media/bincount.png" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/counter.svg" class="r-stretch" style="background-color: white">
+			</section>
+			<section>
+				<h3>VCO — <em>Voltage-Controlled Oscillator</em></h3>
+			</section>
+			<section>
+				<img src="media/korg.jpg" class="r-stretch">
+			</section>
+			<section>
+				<h3>VCO — <em>Voltage-Controlled Oscillator</em></h3>
+				<ul>
+					<li class="fragment">sterowany napięciem generator RC
+					<li class="fragment">jest źródłem zegara, ale o niskiej dokładności
+				</ul>
+			</section>
+			<section>
+				<img src="media/vco_plot.gif" class="r-stretch">
 			</section>
 			<section>
 				<h3>PLL — <em>Phase-Locked Loop</em></h3>
 			</section>
 			<section>
-				<h2>Określenie czasu rzeczywistego</h2>
+				<img src="media/basic-pll.png" class="r-stretch">
 			</section>
 			<section>
-				<h2>Częstotliwość oscylatora</h2>
-				<div>\(f = 32{,}768\text{kHz}\)</div>
-				<div class="r-stack">
-					<div class="fragment fade-in-then-out">\(t = \frac{32{,}768\text{kHz}}{2^{n}}\)</div>
-					<div class="fragment fade-in-then-out">\(t = \frac{32{,}768\text{kHz}}{2^{15}}\)</div>
-					<div class="fragment fade-in-then-out">\(t = \frac{32{,}768\text{kHz}}{2^{15}} = 1\text{s}\)</div>
-				</div>
+				<h3>PLL — <em>Phase-Locked Loop</em></h3>
+				<ul>
+					<li class="fragment">mnoży częstotliwość wzorcową przez \(n\)
+					<li class="fragment">w połączeniu z dzielnikiem przez \(m\) pozwala uzyskać współczynnik \(\frac{n}{m}\)
+					<li class="fragment">bardzo elastyczne rozwiązanie — <em>must-have</em> dla nowoczesnego mikrokontrolera
+				</ul>
+			</section>
+			<section>
+				<h3>PLL — <em>Phase-Locked Loop</em></h3>
+				<ul>
+					<li class="fragment">skomplikowany obwód analogowo-cyfrowy
+					<li class="fragment">często stabilność uzyskuje tylko w pewnym zakresie częstotliwości wejściowej
+					<li class="fragment">uzyskanie stabilności zajmuje pewien czas i może być sygnalizowane w odpowiednim rejestrze
+				</ul>
 			</section>
 			<section>
 				<h2>Kondycjonowanie i propagacja sygnału zegarowego</h2>
+			</section>
+			<section>
+				<h3>Podsystem zegarowy mikrokontrolera</h3>
+			</section>
+			<section>
+				<img src="media/xmega_clock_system.webp" class="r-stretch">
+			</section>
+			<section>
+				<h3>Propagacja zegara w systemie</h3>
+			</section>
+			<section>
+				<h2>Czas rzeczywisty</h2>
+			</section>
+			<section>
+				<h3>Częstotliwość oscylatora</h3>
+				<div class="fragment">Dlaczego \(f = 32{,}768\text{kHz}\)?</div>
+				<div class="r-stack">
+					<div class="fragment fade-in-then-out">\(t = \frac{32{,}768\text{kHz}}{2^{n}}\)</div>
+					<div class="fragment fade-in-then-out">\(t = \frac{32{,}768\text{kHz}}{2^{15}}\)</div>
+					<div class="fragment">\(t = \frac{32{,}768\text{kHz}}{2^{15}} = 1\text{s}\)</div>
+				</div>
+			</section>
+			<section>
+				<h2>Q&A</h2>
 			</section>
 		</div></div>
 		<script src="dist/reveal.js"></script>
