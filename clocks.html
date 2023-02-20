@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/moon.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal"><div class="slides">
+			<section>
+				<h1>Zegary w systemach wbudowanych</h1>
+			</section>
+			<section>
+				<h2>Układy asynchroniczne i synchroniczne</h2>
+			</section>
+			<section>
+				<h3>Układy asynchroniczne</h3>
+			</section>
+			<section>
+				<img src="media/asynchronous.png" class="r-stretch">
+			</section>
+			<section>
+				<h3>Układy asynchroniczne</h3>
+				<ul>
+					<li class="fragment">szybkie
+					<li class="fragment">energooszczędne
+					<li class="fragment">trudne w projektowaniu
+				</ul>
+			</section>
+			<section>
+				<h3>Układy synchroniczne</h3>
+			</section>
+			<section>
+				<img src="media/synchronous.png" class="r-stretch">
+			</section>
+			<section>
+				<h3>Układy synchroniczne</h3>
+				<ul>
+					<li class="fragment">wolniejsze
+					<li class="fragment">zużywają energię cały czas
+					<li class="fragment">łatwiejsze do zaprojektowania
+				</ul>
+			</section>
+			<section>
+				<h3>Programowanie asynchroniczne <sup>⁕</sup></h3>
+				<ul>
+					<li class="fragment">nie ma związku z układami asynchronicznymi
+					<li class="fragment">pozwala obsługiwać wiele zdarzeń o stosunkowo długim czasie wykonania bez blokowania programu
+				</ul>
+			</section>
+			<section>
+				<h2>Źródła zegarowe</h2>
+			</section>
+			<section>
+				<h3>Oscylator RC</h3>
+			</section>
+			<section>
+				<img src="media/PIC16F5X RC Oscillator.png" class="r-stretch">
+			</section>
+			<section>
+				<h3>Oscylator RC</h3>
+				<ul>
+					<li class="fragment">tani
+					<li class="fragment">mały (możliwy do wbudowania w układ scalony)
+					<li class="fragment">energooszczędny
+					<li class="fragment">niedokładny
+				</ul>
+			</section>
+			<section>
+				<img src="media/ATMega32 Block Diagram.png" class="r-stretch">
+			</section>
+			<section>
+				<h3>Rezonator kwarcowy (XO/XTAL)</h3>
+				<ul>
+					<li class="fragment">droższy
+					<li class="fragment">większy
+					<li class="fragment">zużywa więcej energii
+					<li class="fragment">bardzo dokładny (zwłaszcza VCXO, TCXO i OCXO)
+				</ul>
+			</section>
+			<section>
+				<h3>Rezonatory kwarcowe</h3>
+				<dl>
+					<dt class="fragment" data-fragment-index="1">VCXO
+						<dd class="fragment" data-fragment-index="1">Voltage-Controlled Crystal Oscillator
+					<dt class="fragment" data-fragment-index="2">TCXO
+						<dd class="fragment" data-fragment-index="2">Temperature-Compensated Crystal Oscillator
+					<dt class="fragment" data-fragment-index="3">OCXO
+						<dd class="fragment" data-fragment-index="3">Oven-Controlled Crystal Oscillator
+				</dl>
+			</section>
+			<section>
+				<img src="media/Quartz_crystal_internal.jpg" class="r-stretch">
+			</section>
+			<section>
+				<h3>Wzorzec rubidowy</h3>
+				<ul>
+					<li class="fragment">nieludzko dokładny
+					<li class="fragment">bardzo drogi
+					<li class="fragment">zużywa dużo energii
+				</ul>
+			</section>
+			<section>
+				<img src="media/Rubidium.jpg" class="r-stretch">
+			</section>
+			<section>
+				<h3>Odbiornik GPS</h3>
+				<ul>
+					<li class="fragment">bardzo dokładny
+					<li class="fragment">drogi
+					<li class="fragment">zużywa dużo energii
+					<li class="fragment">dostarcza również czas rzeczywisty
+					<li class="fragment">wymaga sygnału z satelity
+				</ul>
+			</section>
+			<section>
+				<h3>Porównanie dokładności wzorców czasu</h3>
+				<table>
+					<thead><tr><th>Źródło</th><th>Dokładność</th><th>Odchyłka</th></tr></thead>
+					<tbody>
+						<tr><td>RC</td><td>±30ppm</td><td>1s/miesiąc</td></tr>
+						<tr><td>XO</td><td>±20ppm</td><td>51s/miesiąc</td></tr>
+						<tr><td>OCXO</td><td>±100ppb</td><td>3s/rok</td></tr>
+						<tr><td>Rb</td><td>±1,5ppb</td><td>47ms/rok</td></tr>
+					</tbody>
+				</table>
+			</section>
+			<section>
+				<h2>Regulacja szybkości zegara</h2>
+			</section>
+			<section>
+				<h3>Szybki zegar \(\Rightarrow\) problem</h3>
+				<ul>
+					<li class="fragment">duże zużycie energii
+					<li class="fragment">generowanie zakłóceń
+					<li class="fragment">zjawiska falowe
+					<li class="fragment">czas propagacji
+				</ul>
+			</section>
+			<section>
+				<h3>Dzielnik częstotliwości</h3>
+			</section>
+			<section>
+				<h3>PLL — <em>Phase-Locked Loop</em></h3>
+			</section>
+			<section>
+				<h2>Określenie czasu rzeczywistego</h2>
+			</section>
+			<section>
+				<h2>Częstotliwość oscylatora</h2>
+				<div>\(f = 32{,}768\text{kHz}\)</div>
+				<div class="r-stack">
+					<div class="fragment fade-in-then-out">\(t = \frac{32{,}768\text{kHz}}{2^{n}}\)</div>
+					<div class="fragment fade-in-then-out">\(t = \frac{32{,}768\text{kHz}}{2^{15}}\)</div>
+					<div class="fragment fade-in-then-out">\(t = \frac{32{,}768\text{kHz}}{2^{15}} = 1\text{s}\)</div>
+				</div>
+			</section>
+			<section>
+				<h2>Kondycjonowanie i propagacja sygnału zegarowego</h2>
+			</section>
+		</div></div>
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/math/math.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				transition: 'convex',
+				backgroundTransition: 'convex',
+				mouseWheel: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ]
+			});
+		</script>
+	</body>
+</html>
