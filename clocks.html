@@ -9,12 +9,25 @@
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/moon.css">
+		<style>
+			.reveal pre code {max-height: 600px;}
+		</style>
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
 	</head>
 	<body>
 		<div class="reveal"><div class="slides">
+			<section>
+				<h1>Autopromocja</h1>
+			</section>
+			<section>
+				<h2>Mariusz Chilmon</h2>
+				<p><a href="mailto:mariusz.chilmon@ctm.gdynia.pl">mariusz.chilmon@ctm.gdynia.pl</a></p>
+				<img src="media/ctm.jpg" class="r-stretch">
+				<p>Ośrodek Badawczo-Rozwojowy<br>Centrum Techniki Morskiej S.A.</p>
+				<p><a href="https://ctm.gdynia.pl">https://ctm.gdynia.pl</a></p>
+			</section>
 			<section>
 				<h1>Zegary w systemach wbudowanych</h1>
 			</section>
@@ -147,10 +160,17 @@
 				<ul>
 					<li class="fragment">duże zużycie energii
 					<li class="fragment">wydzielanie ciepła
+					<li class="fragment">wyższe napięcie zasilania
 					<li class="fragment">generowanie zakłóceń
 					<li class="fragment">zjawiska falowe
 					<li class="fragment">czas propagacji
 				</ul>
+			</section>
+			<section>
+				<img src="media/mega-active.webp" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/mega-idle.webp" class="r-stretch">
 			</section>
 			<section>
 				<h3>Dzielnik częstotliwości — <em>divider</em></h3>
@@ -190,7 +210,7 @@
 				<img src="media/basic-pll.png" class="r-stretch">
 			</section>
 			<section>
-				<h3>PLL — <em>Phase-Locked Loop</em></h3>
+				<h3>Zalety PLL</h3>
 				<ul>
 					<li class="fragment">mnoży częstotliwość wzorcową przez \(n\)
 					<li class="fragment">w połączeniu z dzielnikiem przez \(m\) pozwala uzyskać współczynnik \(\frac{n}{m}\)
@@ -198,7 +218,7 @@
 				</ul>
 			</section>
 			<section>
-				<h3>PLL — <em>Phase-Locked Loop</em></h3>
+				<h3>Wady PLL</h3>
 				<ul>
 					<li class="fragment">skomplikowany obwód analogowo-cyfrowy
 					<li class="fragment">często stabilność uzyskuje tylko w pewnym zakresie częstotliwości wejściowej
@@ -215,10 +235,138 @@
 				<img src="media/xmega_clock_system.webp" class="r-stretch">
 			</section>
 			<section>
+				<img src="media/omap-pll.webp" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/omap-pll-table.webp" class="r-stretch">
+			</section>
+			<section>
+				<pre><code data-trim data-noescape data-line-numbers="1|8-22|64-68|32-42">
+					int davinci_set_sysclk_rate(struct clk *clk, unsigned long rate)
+					{
+						unsigned v;
+						struct pll_data *pll;
+						unsigned long input;
+						unsigned ratio = 0;
+
+						/* If this is the PLL base clock, wrong function to call */
+						if (clk->pll_data)
+							return -EINVAL;
+
+						/* There must be a parent... */
+						if (WARN_ON(!clk->parent))
+							return -EINVAL;
+
+						/* ... the parent must be a PLL... */
+						if (WARN_ON(!clk->parent->pll_data))
+							return -EINVAL;
+
+						/* ... and this clock must have a divider. */
+						if (WARN_ON(!clk->div_reg))
+							return -EINVAL;
+
+						pll = clk->parent->pll_data;
+
+						input = clk->parent->rate;
+
+						/* If pre-PLL, source clock is before the multiplier and divider(s) */
+						if (clk->flags & PRE_PLL)
+							input = pll->input_rate;
+
+						if (input > rate) {
+							/*
+							 * Can afford to provide an output little higher than requested
+							 * only if maximum rate supported by hardware on this sysclk
+							 * is known.
+							 */
+							if (clk->maxrate) {
+								ratio = DIV_ROUND_CLOSEST(input, rate);
+								if (input / ratio > clk->maxrate)
+									ratio = 0;
+							}
+
+							if (ratio == 0)
+								ratio = DIV_ROUND_UP(input, rate);
+
+							ratio--;
+						}
+
+						if (ratio > pll->div_ratio_mask)
+							return -EINVAL;
+
+						do {
+							v = __raw_readl(pll->base + PLLSTAT);
+						} while (v & PLLSTAT_GOSTAT);
+
+						v = __raw_readl(pll->base + clk->div_reg);
+						v &= ~pll->div_ratio_mask;
+						v |= ratio | PLLDIV_EN;
+						__raw_writel(v, pll->base + clk->div_reg);
+
+						v = __raw_readl(pll->base + PLLCMD);
+						v |= PLLCMD_GOSET;
+						__raw_writel(v, pll->base + PLLCMD);
+
+						do {
+							v = __raw_readl(pll->base + PLLSTAT);
+						} while (v & PLLSTAT_GOSTAT);
+
+						return 0;
+					}
+				</code></pre>
+			</section>
+			<section>
 				<h3>Propagacja zegara w systemie</h3>
 			</section>
 			<section>
-				<h2>Czas rzeczywisty</h2>
+				<img src="media/mc14521b.webp" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/clk.png" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/cdcv304.webp" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/square-traces-featured.webp" class="r-stretch">
+			</section>
+			<section>
+				<h3>Długość fali</h3>
+				<div class="r-stack">
+					<div class="fragment fade-in-then-out">\(\lambda = \frac{v}{f}\)</div>
+					<div class="fragment fade-in-then-out">\(\lambda = \frac{v}{f} = \frac{3\cdot10^{8}\frac{\text{m}}{\text{s}}}{10\text{GHz}}\)</div>
+					<div class="fragment fade-in-then-out">\(\lambda = \frac{v}{f} = \frac{3\cdot10^{8}\frac{\text{m}}{\text{s}}}{10\text{GHz}} = \frac{3\cdot10^{11}\frac{\text{mm}}{\text{s}}}{10\cdot10^9\frac{1}{\text{s}}}\)</div>
+					<div class="fragment">\(\lambda = \frac{v}{f} = \frac{3\cdot10^{8}\frac{\text{m}}{\text{s}}}{10\text{GHz}} = \frac{3\cdot10^{11}\frac{\text{mm}}{\text{s}}}{10\cdot10^9\frac{1}{\text{s}}} = 30\text{mm}\)</div>
+				</div>
+			</section>
+			<section>
+				<h2>Zegary czasu rzeczywistego</h2>
+			</section>
+			<section>
+				<h3>Dostarczenie czasu rzeczywistego</h3>
+				<ul>
+					<li class="fragment">liczenie czasu w programie
+					<li class="fragment">RTC zintegrowany w mikrokontrolerze
+					<li class="fragment">RTC zewnętrzny
+					<li class="fragment">odbiornik GPS
+					<li class="fragment">NTP (<em>Network Time Protocol</em>)
+					<li class="fragment">DCF77 (50kW@77,5kHz — 2000km)
+					<li class="fragment">GSM
+					<li class="fragment">RDS (<em>Radio Data System</em>) — ±100ms
+					<li class="fragment">Bluetooth (sparowany telefon komórkowy)
+				</ul>
+			</section>
+			<section>
+				<img src="media/omap-rtc.webp" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/ds3231.webp" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/dcf.jpg" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/waveceptor.jpg" class="r-stretch">
 			</section>
 			<section>
 				<h3>Częstotliwość oscylatora</h3>
@@ -237,6 +385,7 @@
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
 		<script src="plugin/math/math.js"></script>
 		<script>
 			// More info about initialization & config:
@@ -248,7 +397,7 @@
 				backgroundTransition: 'convex',
 				mouseWheel: true,
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, RevealMath.KaTeX ]
 			});
 		</script>
 	</body>
