@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Wykład</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/moon.css">
+		<style>
+			.reveal pre code {max-height: 600px;}
+			.horizontal-chart {
+				position: relative; width: 100%; height: 60px; margin-bottom: 1em;
+			}
+			.horizontal-chart > div:first-child {
+				position: absolute: top: 0; left: 0; height: 100%; width: 700px;
+			}
+			.horizontal-chart > div:first-child > div {
+				background: #2281c2; color: white; font-size: 0.5em; line-height: 3em; height: 100%;
+			}
+			.horizontal-chart > div:first-child + div {
+				position: absolute; top: 0; right: 0; height: 100%; text-align: right;
+			}
+			code.ugly {
+				background: #440000;
+				border: solid 1px #a40000;
+			}
+		</style>
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal"><div class="slides">
+			<section>
+				<h1>Czytanie not katalogowych</h1>
+			</section>
+			<section>
+				<h2>Źródła not katalogowych</h2>
+				<ul>
+					<li class="fragment">Strona producenta
+						<ul>
+							<li>aktualna
+							<li>wszystkie dokumenty w jednym miejscu
+						</ul>
+					</li>
+					<li class="fragment">ALLDATASHEET.COM
+					<li class="fragment">Google (zaskoczeni?)
+				</ul>
+			</section>
+			<section data-auto-animate>
+				<h3>Liczba stron podstawowej dokumentacji</h3>
+				<div class="horizontal-chart">
+					<div><div data-id="1b" style="width: calc(100% * 234/234)">234</div></div>
+					<div data-id="1l">ATtiny45</div>
+				</div>
+			</section>
+			<section data-auto-animate>
+				<h3>Liczba stron podstawowej dokumentacji</h3>
+				<div class="horizontal-chart">
+					<div><div data-id="1b" style="width: calc(100% * 234/346)">234</div></div>
+					<div data-id="1l">ATtiny45</div>
+				</div>
+				<div class="horizontal-chart">
+					<div><div data-id="2b" style="width: calc(100% * 346/346)">346</div></div>
+					<div data-id="2l">ATmega32</div>
+				</div>
+			</section>
+			<section data-auto-animate>
+				<h3>Liczba stron podstawowej dokumentacji</h3>
+				<div class="horizontal-chart">
+					<div><div data-id="1b" style="width: calc(100% * 234/2091)">234</div></div>
+					<div data-id="1l">ATtiny45</div>
+				</div>
+				<div class="horizontal-chart">
+					<div><div data-id="2b" style="width: calc(100% * 346/2091)">346</div></div>
+					<div data-id="2l">ATmega32</div>
+				</div>
+				<div class="horizontal-chart">
+					<div><div data-id="3b" style="width: calc(100% * 2091/2091)">&gt;2091</div></div>
+					<div data-id="3l">OMAPL138</div>
+				</div>
+			</section>
+			<section>
+				<h2>Dokumentacja dodatkowa</h2>
+				<ul>
+					<li>zalecenia dla elektroników
+					<li>sposób programowania
+					<li>opis bootloadera
+					<li>opis kompilatora
+					<li>dokumentacja złożonych peryferiałów
+					<li>rozwiązania znanych problemów
+				</ul>
+			</section>
+			<section>
+				<h2>Podstawowe sekcje w nocie <span style="text-transform: none">&micro;</span>C</h2>
+			</section>
+			<section>
+				<h3>Features</h3>
+				<img src="media/clk.png" class="r-stretch">
+			</section>
+			<section>
+				<h3>Pinout</h3>
+				<img src="media/omap-rtc.webp" class="r-stretch">
+			</section>
+			<section>
+				<h2>Podstawowe sekcje w nocie <span style="text-transform: none">&micro;</span>C</h2>
+				<ul>
+					<li>features
+					<li>pinout
+					<li>rejestry
+					<li>schemat blokowy i opis
+					<li>opis rdzenia
+					<li>mapa pamięci
+					<li>system zegarowy
+					<li>przerwania
+					<li>zarządzanie energią
+					<li>peryferiały (GPIO, DMA, komunikacyjne itd.)
+					<li>rejestry I/O
+					<li>zestaw instrukcji (assembler)
+					<li>programowanie i bootloader
+					<li>timingi
+					<li>charakterystyki elektryczne
+					<li>obudowa
+					<li>errata
+					<li>historia rewizji
+				</ul>
+			</section>
+			<section>
+				<h1>Jakość kodu</h1>
+			</section>
+			<section>
+				<h2>Dlaczego jakość kodu jest ważna?</h2>
+				<ul>
+					<li>odróżnia programistę od klepacza kodu
+				</ul>
+			</section>
+			<section>
+				<h2>Standardy</h2>
+				<ul>
+					<li>zen of python
+					<li>pep8
+					<li>misra
+					<li>cppcoreguidelines
+				</ul>
+			</section>
+			<section>
+				<h2>Elementarne zalecenia</h2>
+			</section>
+			<section data-auto-animate>
+				<h3>Literki są naprawdę za darmo</h3>
+				<pre><code data-id="0" data-trim data-noescape data-line-numbers="1" class="ugly">
+					int a = 0;
+				</code></pre>
+			</section>
+			<section data-auto-animate>
+				<h3>Literki są naprawdę za darmo</h3>
+				<pre><code data-id="0" data-trim data-noescape data-line-numbers="1">
+					int digitsOnDisplay = 0;
+				</code></pre>
+			</section>
+			<section data-auto-animate>
+				<h3>Wszelkie inne znaki też są za darmo (<em>sic!</em>)</h3>
+				<pre><code data-id="1" data-trim data-noescape data-line-numbers="3" class="ugly">
+					int readTemperature()
+					{
+					if (temperatureIsReady()) return i2cReadFrom(0x01) else return 0;
+					}
+				</code></pre>
+			</section>
+			<section data-auto-animate>
+				<h3>Wszelkie inne znaki też są za darmo (<em>sic!</em>)</h3>
+				<pre><code data-id="1" data-trim data-noescape data-line-numbers="3-7">
+					int readTemperature()
+					{
+						if (temperatureIsReady()) {
+							return i2cReadFrom(0x01);
+						} else {
+							return 0;
+						}
+					}
+				</code></pre>
+			</section>
+		</div></div>
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/math/math.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				transition: 'convex',
+				backgroundTransition: 'convex',
+				mouseWheel: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, RevealMath.KaTeX ]
+			});
+		</script>
+	</body>
+</html>
