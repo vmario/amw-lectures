@@ -136,6 +136,10 @@
 				<ul>
 					<li>odróżnia programistę od klepacza kodu
 				</ul>
+				<blockquote class="fragment">
+					<p>Unsafe' means ‘Somebody may die’.</p>
+					<p><cite>— Safety officer</cite></p>
+				</blockquote>
 			</section>
 			<section>
 				<h2>Standardy</h2>
@@ -144,6 +148,7 @@
 					<li>pep8
 					<li>misra
 					<li>cppcoreguidelines
+					<li>linux
 				</ul>
 			</section>
 			<section>
@@ -182,6 +187,35 @@
 						}
 					}
 				</code></pre>
+			</section>
+			<section>
+				<h3>Przedwczesna optymalizacja</h3>
+				<blockquote class="fragment">
+					<p>Premature optimization is the root of&nbsp;all&nbsp;evil.</p>
+					<p><cite>— Donald Knuth</cite></p>
+				</blockquote>
+				<blockquote class="fragment">
+					<p>Two laws of optimization:</p>
+					<ol>
+						<li>Don't do it.
+						<li class="fragment"><strong>For experts only:</strong> Don't do it yet.
+					</ol>
+					<p><cite>— Jon Louis Bentley</cite></p>
+				</blockquote>
+				<p class="fragment">Należy odróżniać rozwiązania przedwcześnie zoptymalizowane od pozbawionych architektury!</p>
+			</section>
+			<section>
+				<img src="media/vscode-layout.webp" class="r-stretch">
+			</section>
+			<section>
+				<h3>Wykorzystanie peryferiałów</h3>
+				sleep, przerwania, dma
+			</section>
+			<section>
+				<h3>Wykorzystanie rejestrów ustawiających i zerujących</h3>
+			</section>
+			<section>
+				<h3>Wykorzystanie systemu operacyjnego</h3>
 			</section>
 		</div></div>
 		<script src="dist/reveal.js"></script>
