@@ -97,26 +97,6 @@
 			</section>
 			<section>
 				<h2>Podstawowe sekcje w nocie <span style="text-transform: none">&micro;</span>C</h2>
-				<ul>
-					<li>features
-					<li>pinout
-					<li>rejestry
-					<li>schemat blokowy i opis
-					<li>opis rdzenia
-					<li>mapa pamięci
-					<li>system zegarowy
-					<li>przerwania
-					<li>zarządzanie energią
-					<li>peryferiały (GPIO, DMA, komunikacyjne itd.)
-					<li>rejestry I/O
-					<li>zestaw instrukcji (assembler)
-					<li>programowanie i bootloader
-					<li>timingi
-					<li>charakterystyki elektryczne
-					<li>obudowa
-					<li>errata
-					<li>historia rewizji
-				</ul>
 			</section>
 			<section>
 				<img src="media/m32-features.webp" class="r-stretch">
@@ -190,7 +170,10 @@
 			<section>
 				<h2>Dlaczego jakość kodu jest ważna?</h2>
 				<ul>
-					<li>odróżnia programistę od klepacza kodu
+					<li class="fragment">odróżnia programistę od klepacza kodu
+					<li class="fragment">zmniejsza liczbę klątw ciążących na programiście
+					<li class="fragment">zapewnia odpowiednią kulturę pracy
+					<li class="fragment">znacznie zwiększa niezawodność
 				</ul>
 				<blockquote class="fragment">
 					<p>Unsafe' means ‘Somebody may die’.</p>
@@ -198,13 +181,17 @@
 				</blockquote>
 			</section>
 			<section>
+				<h3>Upadek: Sprawa Boeinga</h3>
+				<img src="media/downfall.jpg" class="r-stretch">
+			</section>
+			<section>
 				<h2>Standardy</h2>
 				<ul>
-					<li>zen of python
-					<li>pep8
-					<li>misra
-					<li>cppcoreguidelines
-					<li>linux
+					<li class="fragment fade-in-then-semi-out" data-fragment-index="1">MISRA C i MISRA C++ (<em>Motor Industry Software Reliability Association</em>)
+					<li class="fragment fade-in-then-semi-out" data-fragment-index="1">AUTOSAR (<em>AUTomotive Open System ARchitecture</em>)
+					<li class="fragment fade-in-then-semi-out" data-fragment-index="2">C++ Core Guidelines
+					<li class="fragment fade-in-then-semi-out" data-fragment-index="2">PEP 20: The Zen of Python
+					<li class="fragment fade-in-then-semi-out" data-fragment-index="3">Linux kernel coding style
 				</ul>
 			</section>
 			<section>
@@ -227,7 +214,7 @@
 				<pre><code data-id="1" data-trim data-noescape data-line-numbers="3" class="ugly">
 					int readTemperature()
 					{
-					if (temperatureIsReady()) return i2cReadFrom(0x01) else return 0;
+					if (temperatureIsReady()) return i2cReadFrom(SENSOR_ADDRESS) else return 0;
 					}
 				</code></pre>
 			</section>
@@ -237,7 +224,7 @@
 					int readTemperature()
 					{
 						if (temperatureIsReady()) {
-							return i2cReadFrom(0x01);
+							return i2cReadFrom(SENSOR_ADDRESS);
 						} else {
 							return 0;
 						}
@@ -245,33 +232,53 @@
 				</code></pre>
 			</section>
 			<section>
+				<h3>Funkcje i pliki są prawie za darmo</h3>
+			</section>
+			<section>
+				<img src="media/vscode-layout.webp" class="r-stretch">
+			</section>
+			<section data-auto-animate>
+				<h3>Dokumentuj kod</h3>
+				<pre><code data-id="2" data-trim data-noescape data-line-numbers="1" class="ugly">
+					int setCorrection(const int* coefficients)
+					{
+						…
+					}
+				</code></pre>
+			</section>
+			<section data-auto-animate>
+				<h3>Dokumentuj kod</h3>
+				<pre><code data-id="2" data-trim data-noescape data-line-numbers="1-8">
+					/**
+					 * Ustawia krzywą korekcji termopary wg standardu K.
+					 *
+					 * @param coefficients Tablica współczynników.
+					 *
+					 * @retval 0 Ustawiono poprawnie.
+					 * @retval 1 Wystąpił błąd alokacji.
+					 */
+					int setCorrection(const int* coefficients)
+					{
+						…
+					}
+				</code></pre>
+			</section>
+			<section>
+				<h3>Wykorzystuj to, za co i tak zapłaciłeś</h3>
+				<ul class="fragment">
+					<li>przerwania
+					<li>timery
+					<li>DMA (<em>Direct Memory Access</em>)
+					<li>rejestry ustawiające i zerujące
+				</ul>
+			</section>
+			<section>
 				<h3>Przedwczesna optymalizacja</h3>
 				<blockquote class="fragment">
 					<p>Premature optimization is the root of&nbsp;all&nbsp;evil.</p>
 					<p><cite>— Donald Knuth</cite></p>
 				</blockquote>
-				<blockquote class="fragment">
-					<p>Two laws of optimization:</p>
-					<ol>
-						<li>Don't do it.
-						<li class="fragment"><strong>For experts only:</strong> Don't do it yet.
-					</ol>
-					<p><cite>— Jon Louis Bentley</cite></p>
-				</blockquote>
-				<p class="fragment">Należy odróżniać rozwiązania przedwcześnie zoptymalizowane od pozbawionych architektury!</p>
-			</section>
-			<section>
-				<img src="media/vscode-layout.webp" class="r-stretch">
-			</section>
-			<section>
-				<h3>Wykorzystanie peryferiałów</h3>
-				sleep, przerwania, dma
-			</section>
-			<section>
-				<h3>Wykorzystanie rejestrów ustawiających i zerujących</h3>
-			</section>
-			<section>
-				<h3>Wykorzystanie systemu operacyjnego</h3>
+				<p class="fragment">dobra architektura ≠ przedwczesna optymalizacja</p>
 			</section>
 		</div></div>
 		<script src="dist/reveal.js"></script>
