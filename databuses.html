@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Wykład</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/moon.css">
+		<style>
+			.reveal pre code {max-height: 600px;}
+			.horizontal-chart {
+				position: relative; width: 100%; height: 60px; margin-bottom: 1em;
+			}
+			.horizontal-chart > div:first-child {
+				position: absolute: top: 0; left: 0; height: 100%; width: 700px;
+			}
+			.horizontal-chart > div:first-child > div {
+				background: #2281c2; color: white; font-size: 0.5em; line-height: 3em; height: 100%;
+			}
+			.horizontal-chart > div:first-child + div {
+				position: absolute; top: 0; right: 0; height: 100%; text-align: right;
+			}
+			code.ugly {
+				background: #440000;
+				border: solid 1px #a40000;
+			}
+		</style>
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal"><div class="slides">
+			<section>
+				<h1>Magistrale komunikacyjne</h1>
+			</section>
+			<section>
+				<h2>Magistrale równoległe vs. szeregowe</h2>
+			</section>
+			<section>
+				<h3>Właściwości magistral równoległych</h3>
+				<ul>
+					<li class="fragment">naturalne dla procesora
+					<li class="fragment">szybsze od szeregowych (przy tym samym taktowaniu)
+					<li class="fragment">wymagają wiele linii (miedź kosztuje!)
+					<li class="fragment">przy szybkich zegarach na długich liniach zniekształcają sygnał
+				</ul>
+			</section>
+			<section>
+				<h3>Właściwości magistral szeregowych</h3>
+				<ul>
+					<li class="fragment">wymagają peryferiałów tłumaczących je na magistrale równoległe
+					<li class="fragment">wolniejsze od równoległych (przy tym samym taktowaniu)
+					<li class="fragment">wymagają niewiele linii
+					<li class="fragment">możliwe jest stosowanie szybkich zegarów na długich liniach
+				</ul>
+			</section>
+			<section>
+				<h3>Ewolucja magistral</h3>
+				<h4>LPT &rarr; USB</h4>
+				<img src="media/lpt-usb.webp" height="160">
+			</section>
+			<section>
+				<h3>Ewolucja magistral</h3>
+				<h4>ATA &rarr; SATA</h4>
+				<img src="media/ata-sata.webp" height="160">
+			</section>
+			<section>
+				<h3>Ewolucja magistral</h3>
+				<h4>PCI &rarr; PCI-E <span class="fragment">x1, x2, x4, x8, x16</span></h4>
+				<img src="media/pci-pcie.png" height="160">
+			</section>
+			<section>
+				<h2>Magistrale równoległe</h2>
+			</section>
+			<section>
+				<h3>Interfejsy pamięci RAM</h3>
+				<p>DDR SDRAM 5 (<em>Double Data Rate Synchronous Dynamic Random-Access Memory 5</em>)</p>
+				<ul>
+					<li>zegar do 3,2&nbsp;GHz z aktywnymi dwoma zboczami
+					<li>dwie szyny danych po 32&nbsp;bity
+				</ul>
+				<div class="r-stack">
+					<div class="fragment fade-in-then-out">\(B = 3{,}2\cdot10^9\text{Hz}\cdot2\cdot32\text{b}\cdot2\)</div>
+					<div class="fragment fade-in-then-out">\(B = 3{,}2\cdot10^9\text{Hz}\cdot2\cdot32\text{b}\cdot2 = 409{,}6\text{Gb/s}\)</div>
+				</div>
+			</section>
+			<section>
+				<img src="media/ddr-device.webp" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/ddr4-ddr5.webp" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/emifa.webp" class="r-stretch">
+			</section>
+			<section>
+				<h3>Interfejsy w systemach wbudowanych</h3>
+				<ul>
+					<li>pamięci RAM
+					<li>pamięci flash
+					<li>MII (<em>Media-Independent Interface</em>)
+					<li>LCD
+				</ul>
+			</section>
+		</div></div>
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/math/math.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				transition: 'convex',
+				backgroundTransition: 'convex',
+				mouseWheel: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, RevealMath.KaTeX ]
+			});
+		</script>
+	</body>
+</html>
