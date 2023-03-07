@@ -98,13 +98,106 @@
 				<img src="media/emifa.webp" class="r-stretch">
 			</section>
 			<section>
-				<h3>Interfejsy w systemach wbudowanych</h3>
+				<h3>Magistrale równoległe w systemach wbudowanych</h3>
 				<ul>
 					<li>pamięci RAM
 					<li>pamięci flash
 					<li>MII (<em>Media-Independent Interface</em>)
 					<li>LCD
 				</ul>
+			</section>
+			<section>
+				<h2>Magistrale szeregowe</h2>
+			</section>
+			<section>
+				<h3>Konfiguracja peryferiałów w <span style="text-transform: none">&micro;</span>C</h3>
+				<ul>
+					<li>taktowanie
+					<li>polaryzacja
+					<li>długość słowa
+					<li>sposób obsługi buforów
+					<li>przerwania i współpraca z DMA
+				</ul>
+			</section>
+			<section>
+				<h3>RS-232</h3>
+				<ul>
+					<li class="fragment">powstał ok. 60 lat temu
+					<li class="fragment">redukowalny do bardzo prostej magistrali <em>point-to-point</em>
+					<li class="fragment">rozszerzalny do szyny z wielodostępem
+					<li class="fragment">wciąż spotykany w PC
+					<li class="fragment">wykorzystywany w automatyce (np. Modbus na RS-485)
+					<li class="fragment">bardzo dobre konwertery na USB (FT232, Moxa)
+					<li class="fragment">wymaga zegara o dokładności &lt;1%
+					<li class="fragment">w &micro;C obsługiwany przez USART (<em>Universal Synchronous and Asynchronous serial Receiver and Transmitter</em>)
+				</ul>
+			</section>
+			<section>
+				<img src="media/dte-dte.jpg" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/rs232-trace.svg" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/rs485.png" class="r-stretch">
+			</section>
+			<section>
+				<h3>SPI</h3>
+				<ul>
+					<li class="fragment"><em>Serial Peripheral Interface</em>
+					<li class="fragment">używany do komunikacji między układami scalonymi
+					<li class="fragment">umożliwia wielodostęp, ale wymaga dodatkowych linii
+					<li class="fragment">posiada linię zegarową
+					<li class="fragment">prosty i przewidywalny
+					<li class="fragment">komunikacja zawsze zachodzi w dwie strony jednocześnie
+					<li class="fragment">posiada wersje równoległe np. QSPI
+					<li class="fragment">architektura <em>master-slave</em>
+				</ul>
+			</section>
+			<section>
+				<img src="media/spi-slaves.png" class="r-stretch" style="background-color: white">
+			</section>
+			<section>
+				<img src="media/spi-timing.png" class="r-stretch">
+			</section>
+			<section>
+				<h3>I<sup>2</sup>C</h3>
+				<ul>
+					<li class="fragment"><em>Inter-Integrated Circuit</em>
+					<li class="fragment">używany do komunikacji między układami scalonymi
+					<li class="fragment">umożliwia wielodostęp
+					<li class="fragment">wykorzystuje tylko dwie linie + GND
+					<li class="fragment">architektura <em>master-slave</em>
+				</ul>
+			</section>
+			<section>
+				<img src="media/i2c.svg" class="r-stretch" style="background-color: white">
+			</section>
+			<section>
+				<img src="media/i2c-timing.jpg" class="r-stretch">
+			</section>
+			<section>
+				<h3>1-Wire</h3>
+				<ul>
+					<li class="fragment">często używany do komunikacji z czujnikami
+					<li class="fragment">wykorzystuje tylko jedną linię + GND
+					<li class="fragment">umożliwa przesyłanie zasilania linią komunikacyjną
+					<li class="fragment">architektura <em>master-slave</em>
+				</ul>
+			</section>
+			<section>
+				<h3>CAN i LIN</h3>
+				<ul>
+					<li class="fragment">stosowane w motoryzacji
+					<li class="fragment">jedna linia różnicowa
+					<li class="fragment">sprzętowy arbitraż
+				</ul>
+			</section>
+			<section>
+				<img src="media/can-timing.png" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/can-frame.png" class="r-stretch">
 			</section>
 		</div></div>
 		<script src="dist/reveal.js"></script>
