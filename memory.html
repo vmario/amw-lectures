@@ -84,10 +84,19 @@
 				<h2>Cache</h2>
 			</section>
 			<section>
+				<img src="media/haswell-labeled.webp" class="r-stretch">
+			</section>
+			<section>
 				<img src="media/cache.png" class="r-stretch">
 			</section>
 			<section>
-				<img src="media/haswell-labeled.webp" class="r-stretch">
+				<img src="media/l1p.webp" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/l1d.webp" class="r-stretch">
+				<aside class="notes" data-markdown>
+					Optymalizacja struktur.
+				</aside>
 			</section>
 			<section>
 				<h1>Pamięć nieulotna</h1>
@@ -212,13 +221,22 @@
 				<h2>Podstawowe elementy CPU</h2>
 				<ul>
 					<li>ALU (<em>Arithmetic Logic Unit</em>)
-					<li>program counter
-					<li>stack pointer
+					<li><em>program counter</em>
+					<li><em>status register</em>
+					<li><em>stack pointer</em>
 					<li>rejestry ogólnego przeznaczenia
 				</ul>
 			</section>
 			<section>
 				<img src="media/ATMega32 Block Diagram.png" class="r-stretch">
+			</section>
+			<section>
+				<h2>Zarządzanie pamięcią zmiennych</h2>
+				<ul>
+					<li class="fragment">zmienne statyczne
+					<li class="fragment">stos
+					<li class="fragment">sterta
+				</ul>
 				<aside class="notes" data-markdown>
 					Zwróć uwagę na:
 					* stos,
@@ -276,6 +294,7 @@
 				transition: 'convex',
 				backgroundTransition: 'convex',
 				mouseWheel: true,
+				totalTime: 2 * 45 * 60,
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, RevealMath.KaTeX ]
 			});
