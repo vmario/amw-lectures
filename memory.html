@@ -96,6 +96,7 @@
 				<h2>EPROM</h2>
 				<ul>
 					<li class="fragment"><em>Erasable Programmable Read-Only Memory</em>
+					<li class="fragment">technologia historyczna
 					<li class="fragment">programowana wysokim napięciem &gt;20V
 					<li class="fragment">kasowana promieniowaniem UV
 				</ul>
@@ -109,10 +110,88 @@
 					<li class="fragment"><em>Electrically Erasable Programmable Read-Only Memory</em>
 					<li class="fragment">programowana i kasowana elektrycznie
 					<li class="fragment">zazwyczaj niewielka pojemność
-					<li class="fragment">małe <em>erase blocks</em>
+					<li class="fragment">małe <em>erase blocks</em> (1&nbsp;B)
 					<li class="fragment">duża liczba cykli R/W (&gt;100&nbsp;000)
-					<li class="fragment">stosowana w &micro;C, kartach kredytowych, SIM
+					<li class="fragment">stosowana w &micro;C jako pamięć danych
+					<li class="fragment">stosowana w kartach kredytowych, SIM, kluczach
+					<li class="fragment">dostępna jako oddzielne US na I<sup>2</sup>C, SPI, 1-Wire
 				</ul>
+			</section>
+			<section>
+				<h2>Flash</h2>
+				<ul>
+					<li class="fragment">rozwinięcie technologii EEPROM
+					<li class="fragment">może osiągać ogromne pojemności (<em>vide</em> SSD)
+					<li class="fragment">duże <em>erase blocks</em> (rzędu KiB)
+					<li class="fragment">często mniejsza liczba cykli R/W (np. 10&nbsp;000)
+					<li class="fragment">stosowana w &micro;C jako pamięć programu
+					<li class="fragment">stosowana w pendrive'ach, kartach pamięci, SSD
+					<li class="fragment">dostępna jako oddzielne US na SPI, QSPI, równoległy
+				</ul>
+			</section>
+			<section>
+				<h2>NOR Flash vs NAND Flash</h2>
+				<table>
+					<thead>
+						<tr>
+							<th></th>
+							<th>NOR</th>
+							<th>NAND</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="fragment">
+							<td>Pojemność</td>
+							<td>&lt;256MiB</td>
+							<td>&gt;256MiB</td>
+						</tr>
+						<tr class="fragment">
+							<td>Cena/bit</td>
+							<td>większa</td>
+							<td>mniejsza</td>
+						</tr>
+						<tr class="fragment">
+							<td>R swobodny</td>
+							<td>szybki</td>
+							<td>wolny</td>
+						</tr>
+						<tr class="fragment">
+							<td>R/W sekwencyjny</td>
+							<td>wolny</td>
+							<td>szybki</td>
+						</tr>
+						<tr class="fragment">
+							<td>Bit flipping</td>
+							<td>śladowy</td>
+							<td>istotny</td>
+						</tr>
+						<tr class="fragment">
+							<td>Bad blocks</td>
+							<td>0%</td>
+							<td>do 2%</td>
+						</tr>
+						<tr class="fragment">
+							<td>Retencja</td>
+							<td>20 lat</td>
+							<td>10 lat</td>
+						</tr>
+						<tr class="fragment">
+							<td>Przeznaczenie</td>
+							<td>program</td>
+							<td>dane</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<section>
+				<h2>Inne pamięci nieulotne</h2>
+				<ul>
+					<li class="fragment">BBRAM (<em>Battery-Backed RAM</em>)
+					<li class="fragment">FRAM (<em>Ferroelectric RAM</em>)
+				</ul>
+			</section>
+			<section>
+				<img src="media/magnetic-core.jpg" class="r-stretch">
 			</section>
 			<section>
 				<h1>ALU</h1>
