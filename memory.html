@@ -184,6 +184,18 @@
 				</table>
 			</section>
 			<section>
+				<h2>Obsługa wad pamięci NAND Flash</h2>
+				<ul>
+					<li class="fragment">sprzętowo — FTL (<em>Flash Translation Layer</em>)
+					<li class="fragment">programowo — UBIFS (<em>Unsorted Block Image File System</em>)
+					<li class="fragment"><em>bad blocks</em>
+					<li class="fragment"><em>wear leveling</em>
+					<li class="fragment"><em>memory scrubbing</em> (obsługa <em>bit flipping</em>)
+					<li class="fragment"><em>write back cache</em>
+					<li class="fragment">ECC (CRC)
+				</ul>
+			</section>
+			<section>
 				<h2>Inne pamięci nieulotne</h2>
 				<ul>
 					<li class="fragment">BBRAM (<em>Battery-Backed RAM</em>)
@@ -194,16 +206,35 @@
 				<img src="media/magnetic-core.jpg" class="r-stretch">
 			</section>
 			<section>
-				<h1>ALU</h1>
+				<h1>CPU</h1>
 			</section>
 			<section>
-				<h2>GPU</h2>
+				<h2>Podstawowe elementy CPU</h2>
+				<ul>
+					<li>ALU (<em>Arithmetic Logic Unit</em>)
+					<li>program counter
+					<li>stack pointer
+					<li>rejestry ogólnego przeznaczenia
+				</ul>
 			</section>
 			<section>
-				<h2>DSP</h2>
+				<img src="media/ATMega32 Block Diagram.png" class="r-stretch">
+				<aside class="notes" data-markdown>
+					Zwróć uwagę na:
+					* stos,
+					* sterta,
+					* niedeterministyczna alokacja,
+					* dziury w pamięci.
+				</aside>
 			</section>
 			<section>
-				<h1>Timery</h1>
+				<h2>Rodzaje CPU</h2>
+			</section>
+			<section>
+				<img src="media/dra829-block.webp" class="r-stretch">
+			</section>
+			<section>
+				<h1>Odmierzanie czasu</h1>
 			</section>
 			<section>
 				<h2>Timery</h2>
