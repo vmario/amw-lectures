@@ -62,7 +62,69 @@
 				</ul>
 			</section>
 			<section>
+				<h2>POSIX</h2>
+				<ul>
+					<li>Portable Operating System Interface
+Wyspecyfikowany przez IEEE
+Standaryzuje API, powłoki i narzędzia systemowe
+Rozszerza bibliotekę standardową C – C POSIX library
+				</ul>
+			</section>
+			<section>
+				<h2>Systemy zgodne z POSIX-em</h2>
+				<ul>
+					Certyfikowane: HP-UX, IBM AIX, Solaris, OS X, *QNX Neutrino*
+Zgodne: illumos (dawniej OpenSolaris), rodzina BSD, Linux (w tym Android), *Nucleus RTOS, NuttX, RTEMS, VxWorks*
+Protezy: Cygwin dla Windows
+
+				</ul>
+			</section>
+			<section>
+				<h2>Busybox</h2>
+				Programy wywoływane są przez linki symboliczne, np.:␋$ ls –l /bin␋… cp -> busybox␋… ls -> busybox␋… mv -> busybox␋
+
+			</section>
+			<section>
+				<h2>MMU</h2>
+				Tłumaczy adresy wirtualne na fizyczne za pomocą PTE (Page Table Entry) i jego cache TLB (Translation Lookaside Buffer)
+Dzieli pamięć na segmenty (na ogół rzędu 4KiB), które podlegają ochronie
+
+			</section>
+			<section>
+				<h2>Kernel</h2>
+				Ma pełny dostęp do pamięci fizycznej i zarządza pamięcią wirtualną
+Ma pełny dostęp do zasobów sprzętowych
+Ma pełny dostęp do przerwań sprzętowych
+Zarządza pracą programów przestrzeni użytkownika m.in. przez scheduler
+Udostępnia sterowniki urządzeń, systemy plików, stosy protokołów sieciowych itp.
+
+			</section>
+			<section>
+				<h2>Programy w przestrzeni użytkownika</h2>
+				Mają ograniczony dostęp do pamięci, zwłaszcza pamięci innych programów
+Na ogół nie wykorzystują bezpośredniego dostępu do sprzętu
+Podlegają schedulerowi
+Mogą na nie zostać nałożone ograniczenia (vide: ulimit) np. odnośnie czasu procesora, zużycia pamięci, liczby otwartych plików itp.
+			</section>
+			<section>
+				<h2>U-Boot</h2>
+				Wstępna konfiguracja mikrokontrolera
+Inicjalizacja interfejsu Ethernet, karty pamięci
+Uruchomienie terminala RS-232
+Ładowanie systemu operacyjnego z pamięci nieulotnej, USB, via Ethernet (TFTP)
+
+
+Zarządzanie skryptami i zmiennymi środowiskowymi
+Wyświetlenie splashscreena
+Obsługa trybów awaryjnych i serwisowych
+Diagnostyka urządzenia, flashowanie pamięci, testowanie TCP/IP itp.
+
+			</section>
+			<section>
 				<img src="media/boot_flow.webp" class="r-stretch" style="background-color: white; border: solid 10px white">
+			</section>
+			<section>
+				<img src="media/boot-flow-omap.webp" class="r-stretch">
 			</section>
 			<section>
 				<img src="media/flash.svg" class="r-stretch" style="background-color: white">
