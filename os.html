@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Wykład</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/moon.css">
+		<style>
+			.reveal pre code {max-height: 600px;}
+			.horizontal-chart {
+				position: relative; width: 100%; height: 60px; margin-bottom: 1em;
+			}
+			.horizontal-chart > div:first-child {
+				position: absolute: top: 0; left: 0; height: 100%; width: 700px;
+			}
+			.horizontal-chart > div:first-child > div {
+				background: #2281c2; color: white; font-size: 0.5em; line-height: 3em; height: 100%;
+			}
+			.horizontal-chart > div:first-child + div {
+				position: absolute; top: 0; right: 0; height: 100%; text-align: right;
+			}
+			code.ugly {
+				background: #440000;
+				border: solid 1px #a40000;
+			}
+		</style>
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal"><div class="slides">
+			<section>
+				<h1>Systemy operacyjne czasu rzeczywistego</h1>
+			</section>
+			<section>
+				<h2>Zadania OS</h2>
+				<ul>
+					<li class="fragment">przydział czasu procesora zadaniom
+					<li class="fragment">przydział pamięci operacyjnej zadaniom
+					<li class="fragment">dostarczanie mechanizmów komunikacji i synchronizacji zadań
+					<li class="fragment">obsługa sprzętu
+					<li class="fragment">zestawianie połączeń sieciowych<sup>&starf;</sup>
+					<li class="fragment">zarządzanie plikami<sup>&starf;</sup>
+				</ul>
+			</section>
+			<section>
+			</section>
+			<section>
+				<h2>Specyfika RTOS</h2>
+				<p><em>(Real-Time Operating System)</em></p>
+				<ul>
+					<li class="fragment">przydział pamięci operacyjnej zadaniom
+					<li class="fragment">dostarczanie mechanizmów komunikacji i synchronizacji zadań
+					<li class="fragment">obsługa sprzętu
+					<li class="fragment">zestawianie połączeń sieciowych<sup>&starf;</sup>
+					<li class="fragment">zarządzanie plikami<sup>&starf;</sup>
+				</ul>
+			</section>
+			<section>
+				<img src="media/boot_flow.webp" class="r-stretch" style="background-color: white; border: solid 10px white">
+			</section>
+			<section>
+				<img src="media/flash.svg" class="r-stretch" style="background-color: white">
+			</section>
+			<section>
+				<img src="media/mtd.svg" class="r-stretch" style="background-color: white">
+			</section>
+			<section>
+				<img src="media/QNX RTOS.png" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/QNX micro.png" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/QNX mono.png" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/U-Boot Nokia.jpg" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/vm.png" class="r-stretch">
+			</section>
+		</div></div>
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/math/math.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				transition: 'convex',
+				backgroundTransition: 'convex',
+				mouseWheel: true,
+				totalTime: 2 * 45 * 60,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, RevealMath.KaTeX ]
+			});
+		</script>
+	</body>
+</html>
