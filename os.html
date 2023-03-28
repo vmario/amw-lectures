@@ -49,18 +49,108 @@
 				</ul>
 			</section>
 			<section>
+				<img src="media/QNX mono.png" class="r-stretch">
+			</section>
+			<section>
+				<h2>Kernel</h2>
+				<ul>
+					<li class="fragment">pełny dostęp do pamięci fizycznej
+					<li class="fragment">zarządza pamięcią wirtualną
+					<li class="fragment">pełny dostęp do zasobów sprzętowych
+					<li class="fragment">pełny dostęp do przerwań sprzętowych
+					<li class="fragment">zarządza pracą programów przestrzeni użytkownika (scheduler, przydział pamięci)
+					<li class="fragment">udostępnia sterowniki urządzeń, systemy plików, stosy protokołów sieciowych itp.
+				</ul>
+			</section>
+			<section>
+				<h2>Programy w przestrzeni użytkownika</h2>
+				<ul>
+					<li class="fragment">ograniczony dostęp do pamięci
+					<li class="fragment">brak bezpośredniego dostępu do sprzętu
+					<li class="fragment">podlegają schedulerowi
+					<li class="fragment">mogą na nie zostać nałożone ograniczenia (czas procesora, zużycie pamięci, liczba otwartych plików)
+				</ul>
+			</section>
+			<section>
+XXXXXXXXXXXX busybox ulibc
+			<section>
+				<img src="media/QNX micro.png" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/QNX RTOS.png" class="r-stretch">
 			</section>
 			<section>
 				<h2>Specyfika RTOS</h2>
 				<p><em>(Real-Time Operating System)</em></p>
 				<ul>
-					<li class="fragment">przydział pamięci operacyjnej zadaniom
-					<li class="fragment">dostarczanie mechanizmów komunikacji i synchronizacji zadań
-					<li class="fragment">obsługa sprzętu
-					<li class="fragment">zestawianie połączeń sieciowych<sup>&starf;</sup>
-					<li class="fragment">zarządzanie plikami<sup>&starf;</sup>
+					<li class="fragment">brak pamięci wirtualnej i kontroli pamięci (ewentualnie MPU)
+					<li class="fragment">zadania o niskim priorytecie mogą pozostać nieobsłużone
+					<li class="fragment">system operacyjny kompilowany wraz całością oprogramowania
 				</ul>
 			</section>
+			<section>
+				<img src="media/preemptive-scheduling.jpg" class="r-stretch">
+			</section>
+			<section>
+				<h1>Uruchamianie mikrokontrolera</h1>
+			</section>
+			<section>
+				<img src="media/boot_flow.webp" class="r-stretch" style="background-color: white; border: solid 10px white">
+			</section>
+			<section>
+				<img src="media/boot-flow-omap.webp" class="r-stretch">
+			</section>
+
+
+
+
+
+
+
+
+
+			<section>
+				<h2>Busybox</h2>
+				Programy wywoływane są przez linki symboliczne, np.:␋$ ls –l /bin␋… cp -> busybox␋… ls -> busybox␋… mv -> busybox␋
+
+			</section>
+			<section>
+				<h2>MMU</h2>
+				Tłumaczy adresy wirtualne na fizyczne za pomocą PTE (Page Table Entry) i jego cache TLB (Translation Lookaside Buffer)
+Dzieli pamięć na segmenty (na ogół rzędu 4KiB), które podlegają ochronie
+
+			</section>
+			<section>
+				<h2>U-Boot</h2>
+				Wstępna konfiguracja mikrokontrolera
+Inicjalizacja interfejsu Ethernet, karty pamięci
+Uruchomienie terminala RS-232
+Ładowanie systemu operacyjnego z pamięci nieulotnej, USB, via Ethernet (TFTP)
+
+
+Zarządzanie skryptami i zmiennymi środowiskowymi
+Wyświetlenie splashscreena
+Obsługa trybów awaryjnych i serwisowych
+Diagnostyka urządzenia, flashowanie pamięci, testowanie TCP/IP itp.
+
+			</section>
+			<section>
+				<img src="media/flash.svg" class="r-stretch" style="background-color: white">
+			</section>
+			<section>
+				<img src="media/mtd.svg" class="r-stretch" style="background-color: white">
+			</section>
+			<section>
+				<img src="media/U-Boot Nokia.jpg" class="r-stretch">
+			</section>
+			<section>
+				<img src="media/vm.png" class="r-stretch">
+			</section>
+
+
+
+
+
 			<section>
 				<h2>POSIX</h2>
 				<ul>
@@ -78,74 +168,6 @@ Zgodne: illumos (dawniej OpenSolaris), rodzina BSD, Linux (w tym Android), *Nucl
 Protezy: Cygwin dla Windows
 
 				</ul>
-			</section>
-			<section>
-				<h2>Busybox</h2>
-				Programy wywoływane są przez linki symboliczne, np.:␋$ ls –l /bin␋… cp -> busybox␋… ls -> busybox␋… mv -> busybox␋
-
-			</section>
-			<section>
-				<h2>MMU</h2>
-				Tłumaczy adresy wirtualne na fizyczne za pomocą PTE (Page Table Entry) i jego cache TLB (Translation Lookaside Buffer)
-Dzieli pamięć na segmenty (na ogół rzędu 4KiB), które podlegają ochronie
-
-			</section>
-			<section>
-				<h2>Kernel</h2>
-				Ma pełny dostęp do pamięci fizycznej i zarządza pamięcią wirtualną
-Ma pełny dostęp do zasobów sprzętowych
-Ma pełny dostęp do przerwań sprzętowych
-Zarządza pracą programów przestrzeni użytkownika m.in. przez scheduler
-Udostępnia sterowniki urządzeń, systemy plików, stosy protokołów sieciowych itp.
-
-			</section>
-			<section>
-				<h2>Programy w przestrzeni użytkownika</h2>
-				Mają ograniczony dostęp do pamięci, zwłaszcza pamięci innych programów
-Na ogół nie wykorzystują bezpośredniego dostępu do sprzętu
-Podlegają schedulerowi
-Mogą na nie zostać nałożone ograniczenia (vide: ulimit) np. odnośnie czasu procesora, zużycia pamięci, liczby otwartych plików itp.
-			</section>
-			<section>
-				<h2>U-Boot</h2>
-				Wstępna konfiguracja mikrokontrolera
-Inicjalizacja interfejsu Ethernet, karty pamięci
-Uruchomienie terminala RS-232
-Ładowanie systemu operacyjnego z pamięci nieulotnej, USB, via Ethernet (TFTP)
-
-
-Zarządzanie skryptami i zmiennymi środowiskowymi
-Wyświetlenie splashscreena
-Obsługa trybów awaryjnych i serwisowych
-Diagnostyka urządzenia, flashowanie pamięci, testowanie TCP/IP itp.
-
-			</section>
-			<section>
-				<img src="media/boot_flow.webp" class="r-stretch" style="background-color: white; border: solid 10px white">
-			</section>
-			<section>
-				<img src="media/boot-flow-omap.webp" class="r-stretch">
-			</section>
-			<section>
-				<img src="media/flash.svg" class="r-stretch" style="background-color: white">
-			</section>
-			<section>
-				<img src="media/mtd.svg" class="r-stretch" style="background-color: white">
-			</section>
-			<section>
-				<img src="media/QNX RTOS.png" class="r-stretch">
-			</section>
-			<section>
-				<img src="media/QNX micro.png" class="r-stretch">
-			</section>
-			<section>
-				<img src="media/QNX mono.png" class="r-stretch">
-			</section>
-			<section>
-				<img src="media/U-Boot Nokia.jpg" class="r-stretch">
-			</section>
-			<section>
-				<img src="media/vm.png" class="r-stretch">
 			</section>
 		</div></div>
 		<script src="dist/reveal.js"></script>
