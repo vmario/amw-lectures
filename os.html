@@ -72,7 +72,24 @@
 				</ul>
 			</section>
 			<section>
-XXXXXXXXXXXX busybox ulibc
+				<h2>MMU</h2>
+				<p><em>(Memory Management Unit)</em></p>
+				<ul>
+					<li class="fragment">tłumaczy adresy wirtualne na fizyczne za pomocą PTE (<em>Page Table Entry</em>) i jego cache TLB (<em>Translation Lookaside Buffer</em>)
+					<li class="fragment">dzieli pamięć na segmenty (na ogół rzędu 4KiB), które podlegają ochronie
+				</ul>
+			</section>
+			<section>
+				<img src="media/vm.png" class="r-stretch">
+			</section>
+			<section>
+				<h2>GNU/Linux Embedded</h2>
+				<ul>
+					<li class="fragment">często brak GUI
+					<li class="fragment">BusyBox
+					<li class="fragment">uClibc, musl
+				</ul>
+			</section>
 			<section>
 				<img src="media/QNX micro.png" class="r-stretch">
 			</section>
@@ -83,9 +100,10 @@ XXXXXXXXXXXX busybox ulibc
 				<h2>Specyfika RTOS</h2>
 				<p><em>(Real-Time Operating System)</em></p>
 				<ul>
-					<li class="fragment">brak pamięci wirtualnej i kontroli pamięci (ewentualnie MPU)
-					<li class="fragment">zadania o niskim priorytecie mogą pozostać nieobsłużone
 					<li class="fragment">system operacyjny kompilowany wraz całością oprogramowania
+					<li class="fragment">brak pamięci wirtualnej i kontroli pamięci (ewentualnie MPU)
+					<li class="fragment">brak sterowników urządzeń
+					<li class="fragment">zadania o niskim priorytecie mogą pozostać nieobsłużone
 				</ul>
 			</section>
 			<section>
@@ -100,73 +118,29 @@ XXXXXXXXXXXX busybox ulibc
 			<section>
 				<img src="media/boot-flow-omap.webp" class="r-stretch">
 			</section>
-
-
-
-
-
-
-
-
-
 			<section>
-				<h2>Busybox</h2>
-				Programy wywoływane są przez linki symboliczne, np.:␋$ ls –l /bin␋… cp -> busybox␋… ls -> busybox␋… mv -> busybox␋
-
-			</section>
-			<section>
-				<h2>MMU</h2>
-				Tłumaczy adresy wirtualne na fizyczne za pomocą PTE (Page Table Entry) i jego cache TLB (Translation Lookaside Buffer)
-Dzieli pamięć na segmenty (na ogół rzędu 4KiB), które podlegają ochronie
-
-			</section>
-			<section>
-				<h2>U-Boot</h2>
-				Wstępna konfiguracja mikrokontrolera
-Inicjalizacja interfejsu Ethernet, karty pamięci
-Uruchomienie terminala RS-232
-Ładowanie systemu operacyjnego z pamięci nieulotnej, USB, via Ethernet (TFTP)
-
-
-Zarządzanie skryptami i zmiennymi środowiskowymi
-Wyświetlenie splashscreena
-Obsługa trybów awaryjnych i serwisowych
-Diagnostyka urządzenia, flashowanie pamięci, testowanie TCP/IP itp.
-
-			</section>
-			<section>
-				<img src="media/flash.svg" class="r-stretch" style="background-color: white">
-			</section>
-			<section>
-				<img src="media/mtd.svg" class="r-stretch" style="background-color: white">
+				<h2>Bootloader</h2>
+				<ul>
+					<li class="fragment">ułatwia zmianę programu
+					<li class="fragment">uruchamiany przy resetowaniu &micro;C lub na żądanie użytkownika
+					<li class="fragment">ma prawo zapisu do pamięci programu
+					<li class="fragment">sam umieszczony jest w specjalnym obszarze pamięci
+				</ul>
 			</section>
 			<section>
 				<img src="media/U-Boot Nokia.jpg" class="r-stretch">
 			</section>
 			<section>
-				<img src="media/vm.png" class="r-stretch">
-			</section>
-
-
-
-
-
-			<section>
-				<h2>POSIX</h2>
+				<h2>U-Boot</h2>
 				<ul>
-					<li>Portable Operating System Interface
-Wyspecyfikowany przez IEEE
-Standaryzuje API, powłoki i narzędzia systemowe
-Rozszerza bibliotekę standardową C – C POSIX library
-				</ul>
-			</section>
-			<section>
-				<h2>Systemy zgodne z POSIX-em</h2>
-				<ul>
-					Certyfikowane: HP-UX, IBM AIX, Solaris, OS X, *QNX Neutrino*
-Zgodne: illumos (dawniej OpenSolaris), rodzina BSD, Linux (w tym Android), *Nucleus RTOS, NuttX, RTEMS, VxWorks*
-Protezy: Cygwin dla Windows
-
+					<li class="fragment">wstępna konfiguracja mikrokontrolera
+					<li class="fragment">inicjalizacja interfejsu Ethernet, karty pamięci
+					<li class="fragment">uruchomienie terminala RS-232
+					<li class="fragment">ładowanie systemu operacyjnego z pamięci nieulotnej, USB, via Ethernet (TFTP)
+					<li class="fragment">zarządzanie skryptami i zmiennymi środowiskowymi
+					<li class="fragment">wyświetlenie splashscreena
+					<li class="fragment">obsługa trybów awaryjnych i serwisowych
+					<li class="fragment">diagnostyka urządzenia, flashowanie pamięci, testowanie TCP/IP itp.
 				</ul>
 			</section>
 		</div></div>
